@@ -35,7 +35,7 @@ public class BaseController {
                 return jsonObj;
         }
 
-//        判断null 操作
+//        判断空 操作
         public boolean isEmpty(String str){
                 return (str == null ) || (str.trim().length() <= 0 );
         }
