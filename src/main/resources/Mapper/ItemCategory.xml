@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.Dao.ItemCategoryDao">
+            <resultMap id="ResultMapItemCategory" type="ItemCategory">
+                    <id property="id" column="id" jdbcType="INTEGER"/>
+                    <result property="name" column="name" jdbcType="VARCHAR"/>
+                    <result property="pid" column="pid" jdbcType="INTEGER"/>
+                    <result property="isDelete" column="isDelete" jdbcType="INTEGER"/>
+            </resultMap>
+
+<!--            数据库字段-->
+            <sql id="ItemCategory_field">
+                    id,name,pid,isDelete
+            </sql>
+<!--            从java对象中读取数据-->
+            <sql  id="ItemCategory_insert">
+                    #{id},#{name},#{pid},#{isDelete}
+            </sql>
+<!--            查询的条件-->
+            <sql id="ItemCategory_where">
+                <if test="id != null and id !=''">and id=#{id}</if>
+                <if test="name != null and name !=''">and name=#{name}</if>
+                <if test="pid != null and pid !=''">and pid=#{pid}</if>
+                <if test="isDelete != null and isDelete !=''">and  isDelete=#{isDelete}</if>
+            </sql>
+
+<!--            更新条件-->
+            <sql id="ItemCategory_update">
+                <if test="name != null and name !=''">name=#{name},</if>
+                <if test="pid != null and pid !=''">pid=#{pid},</if>
+                <if test="isDelete != null and isDelete !=''">isDelete=#{isDelete},</if>
+            </sql>
+
+            <insert id="insert" parameterType="ItemCategory" useGeneratedKeys="true" keyColumn="id">
+                    insert into item_category values(<include refid="ItemCategory_insert"></include>)
+            </insert>
+
+<!--            根据id删除对象-->
+            <delete id="deleteById" parameterType="java.lang.Integer">
+                    delete from item_category
+                    where id=#{id}
+            </delete>
+
+            <delete id="deleteByEntity" parameterType="ItemCategory">
+                        delete from item_category
+                        <where>
+                            <include refid="ItemCategory_where"></include>
+                        </where>
+            </delete>
+
+            <delete id="deleteByMap" parameterType="java.util.Map">
+                    delete from item_category
+                    <where>
+                        <include refid="ItemCategory_where"></include>
+                    </where>
+            </delete>
+
+<!--            根据实体，更新实体-->
+            <update id="update" parameterType="ItemCategory">
+                    update item_category
+                    <set>
+                           <include refid="ItemCategory_update"></include>
+                    </set>
+                    <where>
+                            <include refid="ItemCategory_where"></include>
+                    </where>
+            </update>
+
+            <update id="updateById" parameterType="ItemCategory">
+                    update item_category
+                    <set>
+                        <include refid="ItemCategory_update"></include>
+                    </set>
+                    where id=#{id}
+            </update>
+
+            <select id="listByMap" resultMap="ResultMapItemCategory" parameterType="java.util.Map">
+                    select <include refid="ItemCategory_field"></include> from item_category
+                    <where>
+                        <include refid="ItemCategory_where"></include>
+                    </where>
+            </select>
+
+            <select id="listAll" resultMap="ResultMapItemCategory">
+                    select <include refid="ItemCategory_field"></include>
+                    from item_category
+            </select>
+
+<!--            根据对象查询，返回一个列表-->
+            <select id="listAllByEntity" parameterType="ItemCategory" resultMap="ResultMapItemCategory">
+                select <include refid="ItemCategory_field"></include>
+                from item_category
+                <where>
+                        <include refid="ItemCategory_where"></include>
+                </where>
+            </select>
+
+            <select id="load" parameterType="java.lang.Integer">
+                    select <include refid="ItemCategory_field"></include>
+                    from item_category
+                    where id=#{id}
+            </select>
+
+</mapper>

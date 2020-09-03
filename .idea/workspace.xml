@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04834a0f-8beb-4aea-bede-6dfb94a3349e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/Dao/ItemCategoryDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/base/BaseDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/base/BaseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/base/BaseServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/utils/Pager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/utils/SystemContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/Service/Impl/ItemCategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sun/Service/ItemCategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Mapper/ItemCategory.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sun/base/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sun/base/BaseController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +74,7 @@
       <workItem from="1599116881498" duration="636000" />
       <workItem from="1599131252588" duration="2885000" />
       <workItem from="1599134785050" duration="2877000" />
+      <workItem from="1599142372855" duration="2311000" />
     </task>
     <servers />
   </component>
@@ -85,9 +82,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="491" y="104" width="374" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1599135988269">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="518" y="85" width="399" height="648" key="#com.intellij.ide.util.MemberChooser" timestamp="1599142533153">
+      <screen x="0" y="0" width="1440" height="820" />
     </state>
+    <state x="518" y="85" width="399" height="648" key="#com.intellij.ide.util.MemberChooser/0.0.1440.820@0.0.1440.820" timestamp="1599142533153" />
     <state x="491" y="104" width="374" height="585" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1599135988269" />
     <state width="1312" height="170" key="GridCell.Tab.0.bottom" timestamp="1599116883029">
       <screen x="0" y="27" width="1366" height="741" />
@@ -105,17 +103,19 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1312" height="170" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1599116883028" />
-    <state x="337" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1599134785011">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="355" y="218" key="com.intellij.ide.util.TipDialog" timestamp="1599142374241">
+      <screen x="0" y="0" width="1440" height="820" />
     </state>
+    <state x="355" y="218" key="com.intellij.ide.util.TipDialog/0.0.1440.820@0.0.1440.820" timestamp="1599142374241" />
     <state x="337" y="224" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1599134785011" />
     <state x="347" y="174" key="run.anything.popup" timestamp="1599133219800">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1599133219800" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1599135344837">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="365" y="69" width="838" height="751" key="search.everywhere.popup" timestamp="1599144417914">
+      <screen x="0" y="0" width="1440" height="820" />
     </state>
+    <state x="365" y="69" width="838" height="751" key="search.everywhere.popup/0.0.1440.820@0.0.1440.820" timestamp="1599144417914" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1599135344837" />
   </component>
 </project>
