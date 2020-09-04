@@ -70,7 +70,7 @@
         <property name="basePackage" value="com.sun.Dao"/>
     </bean>
 
-    <!-- 开启Spring IOC注解扫描器: 扫描Servie层-->
+    <!-- 开启Spring IOC注解扫描器: 扫描Service层-->
     <context:component-scan base-package="com.sun.Service"/>
 
 </beans>
