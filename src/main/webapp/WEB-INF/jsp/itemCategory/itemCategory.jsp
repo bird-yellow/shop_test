@@ -16,7 +16,7 @@
         <div>
             <div>
 
-                    <li> <input type="text"><a href="/itemCategory/add">新增类目</a></li>
+                    <a href="/itemCategory/add">新增类目</a></li>
             </div>
             <table>
                 <tr>
