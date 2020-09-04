@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.Dao.ItemDao">
+    <resultMap id="ResultMapItem" type="Item">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="VARCHAR"/>
+        <result property="scNum" column="scNum" jdbcType="INTEGER"/>
+        <result property="gmNum" column="gmNum" jdbcType="INTEGER"/>
+        <result property="url1" column="url1" jdbcType="VARCHAR"/>
+        <result property="url2" column="url2" jdbcType="VARCHAR"/>
+        <result property="url3" column="url3" jdbcType="VARCHAR"/>
+        <result property="url4" column="url4" jdbcType="VARCHAR"/>
+        <result property="url5" column="url5" jdbcType="VARCHAR"/>
+        <result property="ms" column="ms" jdbcType="VARCHAR"/>
+        <result property="pam1" column="pam1" jdbcType="VARCHAR"/>
+        <result property="pam2" column="pam2" jdbcType="VARCHAR"/>
+        <result property="pam3" column="pam3" jdbcType="VARCHAR"/>
+        <result property="val1" column="val1" jdbcType="VARCHAR"/>
+        <result property="val2" column="val2" jdbcType="VARCHAR"/>
+        <result property="val3" column="val3" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="zk" column="zk" jdbcType="INTEGER"/>
+        <result property="categoryIdOne" column="category_id_one" jdbcType="INTEGER"/>
+        <result property="categoryIdTwo" column="category_id_two" jdbcType="INTEGER"/>
+        <result property="isDelete" column="isDelete" jdbcType="INTEGER"/>
+        <association property="yiji" column="category_id_one" select="com.sun.Dao.ItemCategoryDao.load"/>
+        <association property="erji" column="category_id_two" select="com.sun.Dao.ItemCategoryDao.load"/>
+    </resultMap>
+
+    <!--            数据库字段-->
+    <sql id="Item_field">
+                    id,name,price,zk,scNum,gmNum,url1,url2,url3,url4,url5,ms,pam1,pam2,pam3,val1,
+                    val2,val3,type,category_id_one,category_id_two,isDelete
+            </sql>
+    <!--            从java对象中读取数据-->
+    <sql  id="Item_insert">
+                    #{id},#{name},#{price},#{scNum},#{gmNum},#{url1},#{url2},#{url3},#{url4},#{url5},
+                    #{ms},#{pam1},#{pam2},#{pam3},#{val1},#{val2},#{val3},#{type},#{categoryIdOne},
+                    #{categoryIdTwo},isDelete
+            </sql>
+    <!--            查询的条件-->
+    <sql id="Item_where">
+        <if test="id != null and id !=''">and id=#{id}</if>
+        <if test="name != null and name !=''">and name=#{name}</if>
+        <if test="price != null and price !=''">and price=#{price}</if>
+        <if test="scNum != null and scNum !=''">and scNum=#{scNum}</if>
+        <if test="gmNum != null and gmNum !=''">and gmNum=#{gmNum}</if>
+        <if test="url1 != null and url1 !=''">and url1=#{url1}</if>
+        <if test="url2 != null and url2 !=''">and url2=#{url2}</if>
+        <if test="url3 != null and url3 !=''">and url3=#{url3}</if>
+        <if test="url4 != null and url4 !=''">and url4=#{url4}</if>
+        <if test="url5 != null and url5 !=''">and url5=#{url5}</if>
+        <if test="ms != null and ms !=''">and ms=#{ms}</if>
+        <if test="pam1 != null and pam1 !=''">and pam1=#{pam1}</if>
+        <if test="pam2 != null and pam2 !=''">and pam2=#{pam2}</if>
+        <if test="pam3 != null and pam3 !=''">and pam3=#{pam3}</if>
+        <if test="val1 != null and val1 !=''">and val1=#{val1}</if>
+        <if test="val2 != null and val2 !=''">and val2=#{val2}</if>
+        <if test="val3 != null and val3 !=''">and val3=#{val3}</if>
+        <if test="type != null and type !=''">and type=#{type}</if>
+        <if test="categoryIdOne != null and categoryIdOne !=''">and category_id_one=#{categoryIdOne}</if>
+        <if test="categoryIdTwo != null and categoryIdTwo !=''">and category_id_two=#{categoryIdTwo}</if>
+
+
+        <if test="isDelete != null and isDelete !=''">and  isDelete=#{isDelete}</if>
+    </sql>
+
+    <!--            更新条件-->
+    <sql id="Item_update">
+        <if test="id != null and id !=''"> id=#{id},</if>
+        <if test="name != null and name !=''">name=#{name},</if>
+        <if test="price != null and price !=''">price=#{price},</if>
+        <if test="scNum != null and scNum !=''">scNum=#{scNum},</if>
+        <if test="gmNum != null and gmNum !=''"> gmNum=#{gmNum},</if>
+        <if test="url1 != null and url1 !=''"> url1=#{url1},</if>
+        <if test="url2 != null and url2 !=''"> url2=#{url2},</if>
+        <if test="url3 != null and url3 !=''"> url3=#{url3},</if>
+        <if test="url4 != null and url4 !=''"> url4=#{url4},</if>
+        <if test="url5 != null and url5 !=''"> url5=#{url5},</if>
+        <if test="ms != null and ms !=''">ms=#{ms},</if>
+        <if test="pam1 != null and pam1 !=''"> pam1=#{pam1},</if>
+        <if test="pam2 != null and pam2 !=''"> pam2=#{pam2},</if>
+        <if test="pam3 != null and pam3 !=''"> pam3=#{pam3},</if>
+        <if test="val1 != null and val1 !=''"> val1=#{val1},</if>
+        <if test="val2 != null and val2 !=''"> val2=#{val2},</if>
+        <if test="val3 != null and val3 !=''"> val3=#{val3},</if>
+        <if test="type != null and type !=''">type=#{type},</if>
+        <if test="categoryIdOne != null and categoryIdOne !=''"> category_id_one=#{categoryIdOne},</if>
+        <if test="categoryIdTwo != null and categoryIdTwo !=''"> category_id_two=#{categoryIdTwo},</if>
+        <if test="isDelete != null and isDelete !=''">isDelete=#{isDelete},</if>
+    </sql>
+
+    <insert id="insert" parameterType="Item" useGeneratedKeys="true" keyColumn="id">
+        insert into item values(<include refid="Item_insert"></include>)
+    </insert>
+
+    <!--            根据id删除对象-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+                    delete from item
+                    where id=#{id}
+            </delete>
+
+    <delete id="deleteByEntity" parameterType="Item">
+        delete from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByMap" parameterType="java.util.Map">
+        delete from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </delete>
+
+    <!--            根据实体，更新实体-->
+    <update id="update" parameterType="Item">
+        update item
+        <set>
+            <include refid="Item_update"></include>
+        </set>
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </update>
+
+    <update id="updateById" parameterType="Item">
+        update item
+        <set>
+            <include refid="Item_update"></include>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="listByMap" resultMap="ResultMapItem" parameterType="java.util.Map">
+        select <include refid="Item_field"></include> from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="ResultMapItem">
+        select <include refid="Item_field"></include>
+        from item
+    </select>
+
+    <!--            根据对象查询，返回一个列表-->
+    <select id="listAllByEntity" parameterType="Item" resultMap="ResultMapItem">
+        select <include refid="Item_field"></include>
+        from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </select>
+
+    <select id="load" parameterType="java.lang.Integer" resultMap="ResultMapItem">
+        select <include refid="Item_field"></include>
+        from item
+        where id=#{id}
+    </select>
+
+    <select id="getById" parameterType="java.lang.Integer" resultMap="ResultMapItem">
+        select <include refid="Item_field"></include>
+        from item
+        where id=#{id}
+    </select>
+
+    <!--            map 查询，不分页-->
+    <select id="getByMap"  parameterType="java.util.Map" resultMap="ResultMapItem">
+        select <include refid="Item_field"></include> from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </select>
+
+    <!--            根据对象查询，不分页-->
+    <select id="getByEntity" parameterType="Item" resultMap="ResultMapItem">
+        select  <include refid="Item_field"></include>
+        from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </select>
+
+    <select id="findByMap" parameterType="java.util.Map" resultMap="ResultMapItem">
+        select <include refid="Item_field"></include>
+        from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </select>
+
+    <select id="findByEntity" parameterType="Item" resultMap="ResultMapItem">
+        select <include refid="Item_field"></include>
+        from item
+        <where>
+            <include refid="Item_where"></include>
+        </where>
+    </select>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert <include refid="Item_field"></include>
+        from item
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.name},#{item.price},#{item.zk},#{item.scNum},#{item.gmNum},#{item.url1},
+            #{item.url2},#{item.url3},#{item.url4},#{item.url5},#{item.ms},#{item.pam1},#{item.pam2},
+            #{item.pam3},#{item.val1},#{item.val2},#{item.val3},#{item.type},#{item.categoryIdOne},
+            #{item.categoryIdTwo},#{item.isDelete},,)
+        </foreach>
+    </insert>
+
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update item
+            <set>
+                <if test="item.name != null and item.name !=''">name=#{item.name},</if>
+                <if test="item.price != null and item.price !=''">price=#{item.price},</if>
+                <if test="item.scNum != null and item.scNum !=''">scNum=#{item.scNum},</if>
+                <if test="item.gmNum != null and item.gmNum !=''"> gmNum=#{item.gmNum},</if>
+                <if test="item.url1 != null and item.url1 !=''"> url1=#{item.url1},</if>
+                <if test="item.url2 != null and item.url2 !=''"> url2=#{item.url2},</if>
+                <if test="item.url3 != null and item.url3 !=''"> url3=#{item.url3},</if>
+                <if test="item.url4 != null and item.url4 !=''"> url4=#{item.url4},</if>
+                <if test="item.url5 != null and item.url5 !=''"> url5=#{item.url5},</if>
+                <if test="item.ms != null and item.ms !=''">ms=#{item.ms},</if>
+                <if test="item.pam1 != null and item.pam1 !=''"> pam1=#{item.pam1},</if>
+                <if test="item.pam2 != null and item.pam2 !=''"> pam2=#{item.pam2},</if>
+                <if test="item.pam3 != null and item.pam3 !=''"> pam3=#{item.pam3},</if>
+                <if test="item.val1 != null and item.val1 !=''"> val1=#{item.val1},</if>
+                <if test="item.val2 != null and item.val2 !=''"> val2=#{item.val2},</if>
+                <if test="item.val3 != null and item.val3 !=''"> val3=#{item.val3},</if>
+                <if test="item.type != null and item.type !=''">type=#{item.type},</if>
+                <if test="item.categoryIdOne != null and item.categoryIdOne !=''"> category_id_one=#{item.categoryIdOne},</if>
+                <if test="item.categoryIdTwo != null and item.categoryIdTwo !=''"> category_id_two=#{item.categoryIdTwo},</if>
+                <if test="item.isDelete != null and item.isDelete !=''">isDelete=#{item.isDelete},</if>
+            </set>
+            <where>
+                <if test="item.id != null and item.id !=''">and id=#{item.id}</if>
+            </where>
+        </foreach>
+    </update>
+
+    <!--        封装纯sql语法-->
+    <select id="getBySqlReturnMap" resultType="java.util.Map">
+                    ${sql}
+            </select>
+
+    <select id="getBySqlReturnEntity" resultMap="ResultMapItem">
+                    ${sql}
+            </select>
+
+    <select id="listBySqlReturnEntity" resultMap="ResultMapItem">
+                    ${sql}
+            </select>
+
+    <select id="findBySqlReturnEntity"  resultMap="ResultMapItem">
+                ${sql}
+            </select>
+
+    <update id="updateBySql" >
+                ${sql}
+            </update>
+
+    <delete id="deleteBySql" >
+                ${sql}
+            </delete>
+</mapper>
