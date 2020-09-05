@@ -108,6 +108,14 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.73</version>
     </dependency>
+
+<!--    ueditor-->
+    <dependency>
+      <groupId>com.gitee.qdbp.thirdparty</groupId>
+      <artifactId>ueditor</artifactId>
+      <version>1.4.3.6</version>
+    </dependency>
+
   </dependencies>
 
   <build>

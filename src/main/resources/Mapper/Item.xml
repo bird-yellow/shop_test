@@ -31,14 +31,13 @@
 
     <!--            数据库字段-->
     <sql id="Item_field">
-                    id,name,price,zk,scNum,gmNum,url1,url2,url3,url4,url5,ms,pam1,pam2,pam3,val1,
-                    val2,val3,type,category_id_one,category_id_two,isDelete
-            </sql>
+                    id,name,price,zk,scNum,gmNum,url1,url2,url3,url4,url5,ms,pam1,pam2,pam3,val1,val2,val3,type,category_id_one,category_id_two,isDelete
+    </sql>
     <!--            从java对象中读取数据-->
     <sql  id="Item_insert">
-                    #{id},#{name},#{price},#{scNum},#{gmNum},#{url1},#{url2},#{url3},#{url4},#{url5},
+                    #{id},#{name},#{price},#{zk},#{scNum},#{gmNum},#{url1},#{url2},#{url3},#{url4},#{url5},
                     #{ms},#{pam1},#{pam2},#{pam3},#{val1},#{val2},#{val3},#{type},#{categoryIdOne},
-                    #{categoryIdTwo},isDelete
+                    #{categoryIdTwo},#{isDelete}
             </sql>
     <!--            查询的条件-->
     <sql id="Item_where">
@@ -62,14 +61,11 @@
         <if test="type != null and type !=''">and type=#{type}</if>
         <if test="categoryIdOne != null and categoryIdOne !=''">and category_id_one=#{categoryIdOne}</if>
         <if test="categoryIdTwo != null and categoryIdTwo !=''">and category_id_two=#{categoryIdTwo}</if>
-
-
         <if test="isDelete != null and isDelete !=''">and  isDelete=#{isDelete}</if>
     </sql>
 
     <!--            更新条件-->
     <sql id="Item_update">
-        <if test="id != null and id !=''"> id=#{id},</if>
         <if test="name != null and name !=''">name=#{name},</if>
         <if test="price != null and price !=''">price=#{price},</if>
         <if test="scNum != null and scNum !=''">scNum=#{scNum},</if>
@@ -93,7 +89,7 @@
     </sql>
 
     <insert id="insert" parameterType="Item" useGeneratedKeys="true" keyColumn="id">
-        insert into item values(<include refid="Item_insert"></include>)
+        insert into item(<include refid="Item_field"></include>) values(<include refid="Item_insert"></include>)
     </insert>
 
     <!--            根据id删除对象-->

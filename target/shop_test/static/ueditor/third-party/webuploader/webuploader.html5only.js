@@ -5555,5 +5555,5 @@
     ], function( preset ) {
         return preset;
     });
-    return require('src/main/webapp/static/ueditor/third-party/webuploader/webuploader');
+    return require('webuploader');
 });

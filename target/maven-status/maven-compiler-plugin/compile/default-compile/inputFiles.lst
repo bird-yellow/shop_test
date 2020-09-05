@@ -17,6 +17,7 @@
 /home/duck/Git/shop_test/src/main/java/com/sun/utils/UUIDUtils.java
 /home/duck/Git/shop_test/src/main/java/com/sun/Service/Impl/ItemCategoryServiceImpl.java
 /home/duck/Git/shop_test/src/main/java/com/sun/base/BaseDao.java
+/home/duck/Git/shop_test/src/main/java/com/sun/Controller/UeditorController.java
 /home/duck/Git/shop_test/src/main/java/com/sun/Service/UserService.java
 /home/duck/Git/shop_test/src/main/java/com/sun/Service/ItemCategoryService.java
 /home/duck/Git/shop_test/src/main/java/com/sun/Service/ItemService.java

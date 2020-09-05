@@ -33,7 +33,7 @@ public class ItemController extends BaseController {
         @RequestMapping("/findBySql")
         public String findBySql(Item item, Model model){
                 String sql = "select * from item where isDelete = 0";
-                if(isEmpty(item.getName())){
+                if(!isEmpty(item.getName())){
                         sql += " and name like '%" + item.getName() +"%' ";
                 }
                 sql +=" order by id";
@@ -64,34 +64,63 @@ public class ItemController extends BaseController {
                         return "redirect:/item/findBySql.action";
         }
 
+        @RequestMapping("/update")
+//        查找所有的二级分类
+        public String update(Integer id,Model model){
+                Item item = itemService.load(id);
+                String sql = "select * from item_category where isDelete = 0 and pid is not null order by id";
+                List<ItemCategory> list = itemCategoryService.listBySqlReturnEntity(sql);
+                model.addAttribute("types",list);
+                model.addAttribute("obj",item);
+                return "item/update";
+        }
+
+        @RequestMapping("/exUpdate")
+        public String exUpdate(Item item,@RequestParam("file")CommonsMultipartFile[] files,HttpServletRequest request) throws IOException {
+                itemCommon(item,files,request);
+                itemService.updateById(item);
+                return "redirect:/item/findBySql.action";
+        }
+
 //        新增，更新的公共方法
-        private void itemCommon(Item item, @RequestParam("file")CommonsMultipartFile[] files, HttpServletRequest request) throws IOException {
+        private void itemCommon(Item item, @RequestParam("file") CommonsMultipartFile[] files, HttpServletRequest request) throws IOException {
                 if(files.length > 0){
                         for(int i = 0;i < files.length;i++){
                                 String n = UUIDUtils.create();
+                                //创建真实的路径
                                 String path = request.getServletContext().getRealPath("/upload/" + n + files[i].getOriginalFilename());
                                 File newFile = new File(path);
                                 files[i].transferTo(newFile);
                                 if(i == 0){
 //                                        然后获取相对路径
-                                        item.setUrl1(request.getServletContext().getContextPath() + "/update/" + n + files[i].getOriginalFilename());
+                                        item.setUrl1(request.getServletContext().getContextPath() + "/upload/" + n + files[i].getOriginalFilename());
                                 }
                                  if( i == 1){
-                                        item.setUrl2(request.getServletContext().getContextPath() + "/update/" + n + files[i].getOriginalFilename());
+                                        item.setUrl2(request.getServletContext().getContextPath() + "/upload/" + n + files[i].getOriginalFilename());
                                 }
                                  if( i == 2){
-                                        item.setUrl3(request.getServletContext().getContextPath() + "/update/" + n + files[i].getOriginalFilename());
+                                        item.setUrl3(request.getServletContext().getContextPath() + "/upload/" + n + files[i].getOriginalFilename());
                                 }
                                  if( i == 3){
-                                        item.setUrl4(request.getServletContext().getContextPath() + "/update/" + n + files[i].getOriginalFilename());
+                                        item.setUrl4(request.getServletContext().getContextPath() + "/upload/" + n + files[i].getOriginalFilename());
 
                                 }
                                  if( i ==4){
-                                        item.setUrl4(request.getServletContext().getContextPath() + "/update/" + n + files[i].getOriginalFilename());
+                                        item.setUrl4(request.getServletContext().getContextPath() + "/upload/" + n + files[i].getOriginalFilename());
                                 }
                         }
                 }
                 ItemCategory itemCategory = itemCategoryService.getById(item.getCategoryIdTwo());
                 item.setCategoryIdOne(itemCategory.getPid());
         }
+
+//        商品下架
+        @RequestMapping("/delete")
+        public String delete(Integer id){
+                Item item =itemService.load(id);
+                item.setIsDelete(1);
+                itemService.updateById(item);
+                return "redirect:/item/findBySql.action";
+        }
 }
+
