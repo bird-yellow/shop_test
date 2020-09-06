@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.Dao.ItemOrderDao">
+    <resultMap id="ResultMapItemOrder" type="ItemOrder">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="item_id" column="item_id" jdbcType="INTEGER"/>
+        <result property="user_id" column="user_id" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="addTime" column="addTime" jdbcType="TIMESTAMP"/>
+        <result property="total" column="total" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="isDelete" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <association property="user" column="user_id"  select="com.sun.Dao.UserDao.load"/>
+    </resultMap>
+
+    <!--            数据库字段-->
+    <sql id="ItemOrder_field">
+                    id,item_id,user_id,code,addTime,total,isDelete,status
+            </sql>
+    <!--            从java对象中读取数据-->
+    <sql  id="ItemOrder_insert">
+                    #{id},#{item_id},#{user_id},#{code},#{addTime},#{total},#{isDelete},#{status}
+            </sql>
+    <!--            查询的条件-->
+    <sql id="ItemOrder_where">
+        <if test="id != null and id !=''">and id=#{id}</if>
+        <if test="item_id != null and item_id !=''">and item_id=#{iem_id}</if>
+        <if test="user_id != null and user_id !=''">and user_id=#{user_id}</if>
+        <if test="code != null and code !=''">and  code=#{code}</if>
+        <if test="addTime != null and addTime !=''">and addTime=#{addTim}</if>
+        <if test="total != null and total !=''">and total=#{total}</if>
+        <if test="isDelete != null and isDelete !=''">and isDelete</if>
+        <if test="status != null and status !=''">and status=#{status}</if>
+    </sql>
+
+    <!--            更新条件-->
+    <sql id="ItemOrder_update">
+        <if test="item_id != null and item_id !=''">item_id=#{item_id},</if>
+        <if test="user_id != null and user_id !=''">user_id=#{user_id},</if>
+        <if test="code != null and code !=''">code=#{code},</if>
+        <if test="addTime != null and addTime !=''">addTime=#{addTime},</if>
+        <if test="total != null and total !=''">total=#{total},</if>
+        <if test="isDelete != null and isDelete !=''">isDelete=#{isDelete},</if>
+        <if test="status != null and status !=''">status=#{status},</if>
+    </sql>
+
+    <insert id="insert" parameterType="ItemOrder" useGeneratedKeys="true" keyColumn="id">
+        insert into item_order values(<include refid="ItemOrder_insert"></include>)
+    </insert>
+
+    <!--            根据id删除对象-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+                    delete from item_order
+                    where id=#{id}
+            </delete>
+
+    <delete id="deleteByEntity" parameterType="ItemOrder">
+        delete from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByMap" parameterType="java.util.Map">
+        delete from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </delete>
+
+    <!--            根据实体，更新实体-->
+    <update id="update" parameterType="ItemOrder">
+        update item_order
+        <set>
+            <include refid="ItemOrder_update"></include>
+        </set>
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </update>
+
+    <update id="updateById" parameterType="ItemOrder">
+        update item_order
+        <set>
+            <include refid="ItemOrder_update"></include>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="listByMap" resultMap="ResultMapItemOrder" parameterType="java.util.Map">
+        select <include refid="ItemOrder_field"></include> from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="ResultMapItemOrder">
+        select <include refid="ItemOrder_field"></include>
+        from item_order
+    </select>
+
+    <!--            根据对象查询，返回一个列表-->
+    <select id="listAllByEntity" parameterType="ItemOrder" resultMap="ResultMapItemOrder">
+        select <include refid="ItemOrder_field"></include>
+        from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </select>
+
+    <select id="load" parameterType="java.lang.Integer" resultMap="ResultMapItemOrder">
+        select <include refid="ItemOrder_field"></include>
+        from item_order
+        where id=#{id}
+    </select>
+
+    <select id="getById" parameterType="java.lang.Integer" resultMap="ResultMapItemOrder">
+        select <include refid="ItemOrder_field"></include>
+        from item_order
+        where id=#{id}
+    </select>
+
+    <!--            map 查询，不分页-->
+    <select id="getByMap"  parameterType="java.util.Map" resultMap="ResultMapItemOrder">
+        select <include refid="ItemOrder_field"></include> from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </select>
+
+    <!--            根据对象查询，不分页-->
+    <select id="getByEntity" parameterType="ItemOrder" resultMap="ResultMapItemOrder">
+        select  <include refid="ItemOrder_field"></include>
+        from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </select>
+
+    <select id="findByMap" parameterType="java.util.Map" resultMap="ResultMapItemOrder">
+        select <include refid="ItemOrder_field"></include>
+        from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </select>
+
+    <select id="findByEntity" parameterType="ItemOrder" resultMap="ResultMapItemOrder">
+        select <include refid="ItemOrder_field"></include>
+        from item_order
+        <where>
+            <include refid="ItemOrder_where"></include>
+        </where>
+    </select>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert <include refid="ItemOrder_field"></include>
+        from item_order
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.item_id},#{item.user_id},#{item.code},#{item.addTime},#{item.total},
+            #{item.isDelete},#{item.status})
+        </foreach>
+    </insert>
+
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update item_order
+            <set>
+                <if test="item.user_id != null and item.user_id !=''">user_id=#{item.user_id},</if>
+                <if test="item.item_id != null and item.item_id !=''">item_id=#{item.item_id},</if>
+                <if test="item.code != null and item.code !=''">code=#{item.code},</if>
+                <if test="item.addTime != null and item.addTime !=''">addTime=#{item.addTime},</if>
+                <if test="item.total != null and item.total !=''">total=#{item.total},</if>
+                <if test="item.isDelete != null and item.isDelete !=''">isDelete=#{item.isDelete},</if>
+                <if test="item.status != null and item.status !=''">status=#{item.status},</if>
+            </set>
+            <where>
+                <if test="item.id != null and item.id !=''">and id=#{item.id}</if>
+            </where>
+        </foreach>
+    </update>
+
+    <!--        封装纯sql语法-->
+    <select id="getBySqlReturnMap" resultType="java.util.Map">
+                    ${sql}
+            </select>
+
+    <select id="getBySqlReturnEntity" resultMap="ResultMapItemOrder">
+                    ${sql}
+            </select>
+
+    <select id="listBySqlReturnEntity" resultMap="ResultMapItemOrder">
+                    ${sql}
+            </select>
+
+    <select id="findBySqlReturnEntity"  resultMap="ResultMapItemOrder">
+                ${sql}
+            </select>
+
+    <update id="updateBySql" >
+                ${sql}
+            </update>
+
+    <delete id="deleteBySql" >
+                ${sql}
+            </delete>
+</mapper>

@@ -10,7 +10,7 @@
                 <li><a href="/itemCategory/findBySql"><span>类目管理</span></a></li>
                 <li><a href="/user/findBySql"><span >用户管理</span></a></li>
                 <li><a href="/item/findBySql"><span>商品管理</span></a></li>
-                <li><a href=""><span>订单管理</span></a></li>
+                <li><a href="/itemOrder/findBySql"><span>订单管理</span></a></li>
                 <li><a href=""><span>公告管理</span></a></li>
                 <li><a href=""><span>流言管理</span></a></li>
         </ul>
